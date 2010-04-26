@@ -1,2 +1,33 @@
 My experiments with Django and JSON. 
+====================================
+This is a Django application, working as a gateway between parts of distributed system (DS). 
+
+
+System description:
+===================
+
+There are processes of two types: "data processor" and "data generator" in DS. Data generators can generate data much faster, than any processor could process this data. As a result, the number of processors in the system will be larger in most cases.
+
+Data processors will be installed on computers, which do not have a direct access _from_ Internet (do not have a dedicated IP, etc).
+
+It should be possible to add (or remove) data processor instances "on the fly".
+
+It is not possible to establish permanent connections between the parts of the system.
+
+Tasks are "atomic" - processor does not need to know any previous or future tasks contents to process the data.
+
+
+Gateway:
+========
+
+Gateway (this application) should solve the following problems:
+ - Provide a single access point for data generators and processors (There should be more than one gateway, because it is a potential point of failure)
+ - Decouple data processors from data generators as much as possible. 
+ - Dispatch messages between data processors, so any number of processors could work at any given point of time.
+
+
+Summary
+=======
+
 Project is discontinued, because RabbitMQ serves all of my needs much better.
+
